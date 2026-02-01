@@ -88,9 +88,7 @@ button:hover {
   margin-top: 12px;
 }
 
-/* ===============================
-   MOBILE OPTIMIZATION (IPHONE)
-================================ */
+/* mobile optimization */
 @media (max-width: 600px) {
   h1 {
     font-size: 2rem;
