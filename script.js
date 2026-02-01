@@ -25,7 +25,7 @@ const nopeTexts = [
 
 let lastTextIndex = -1;
 
-noBtn.addEventListener("mouseover", () => {
+function moveNoButton() {
   const cardRect = card.getBoundingClientRect();
   const btnRect = noBtn.getBoundingClientRect();
 
@@ -35,12 +35,15 @@ noBtn.addEventListener("mouseover", () => {
   const x = Math.random() * maxX;
   const y = Math.random() * maxY;
 
-  // Move button
   noBtn.style.position = "absolute";
   noBtn.style.left = `${x}px`;
   noBtn.style.top = `${y}px`;
 
-  // Change text (avoid immediate repeats)
+  if (navigator.vibrate) {
+    navigator.vibrate(30);
+  }
+
+  // Change text without repeating
   let newIndex;
   do {
     newIndex = Math.floor(Math.random() * nopeTexts.length);
@@ -48,6 +51,15 @@ noBtn.addEventListener("mouseover", () => {
 
   lastTextIndex = newIndex;
   noBtn.textContent = nopeTexts[newIndex];
+}
+
+// Desktop
+noBtn.addEventListener("mouseover", moveNoButton);
+
+// Mobile
+noBtn.addEventListener("touchstart", (e) => {
+  e.preventDefault(); // important!
+  moveNoButton();
 });
 
 
